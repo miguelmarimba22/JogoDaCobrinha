@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Snake Game</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .game {
+            display: flex;
+            flex-direction: row;
+            padding: 20px;
+        }
+
+        #canvas {
+            border: 2px solid #333;
+            background-color: #fff;
+        }
+
+        .panel {
+            margin-left: 20px;
+            padding: 10px;
+            background: #e0e0e0;
+            border-radius: 8px;
+        }
+
+        .panel span {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game">
+        <canvas id="canvas" width="420" height="420"></canvas>
+        <div class="panel">
+            <span id="points">Points: 0</span>
+            <span id="player-coord">Player: (0, 0)</span>
+            <span id="apple-coord">Apple: (0, 0)</span>
+            <span id="distance">Distance: 0</span>
+            <span id="direction">Direction: None</span>
+            <span id="size">Size: 1</span>
+            <button id="reset" style="width: 100%;">Reset</button>
+        </div>
+    </div>
+
+    <script src="/JS"></script>
+</body>
+</html>

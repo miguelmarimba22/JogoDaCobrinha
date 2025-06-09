@@ -98,9 +98,22 @@ const CheckCollision = () => { // check if player is colliding with the wall or 
     apple.eatable = true
     if (player.head.position.x === apple.position.x && player.head.position.y === apple.position.y && apple.eatable === true) {
         apple.position = getRandomApplePosition()
-        player.body.unshift({x:player.head.position.x, y:player.head.position.y})
+        if (player.body.length === 0) {
+            player.body.unshift({x:player.head.position.x, y:player.head.position.y})
+        } else {
+            player.body.unshift({x:player.body[0].x, y:player.body[0].y})
+        }
         player.points+=5
         apple.eatable = false
+    }
+
+    if (player.body.length >= 4) {
+        for (segment of player.body) {
+            if (player.head.position.x === segment.x && player.head.position.y === segment.y) {
+                alert("Game Over")
+                ResetGame()
+            }
+        }
     }
 }
 
@@ -124,6 +137,7 @@ const draw = () => {
         ctx.strokeStyle="black"
         ctx.moveTo(i, 0);
         ctx.lineTo(i, canvas.width)
+        ctx.lineWidth=2
         ctx.stroke();
     }
     for (let i=canvas.gridsize;i<canvas.height;i+=canvas.gridsize) {
@@ -131,6 +145,7 @@ const draw = () => {
         ctx.strokeStyle="black"
         ctx.moveTo(0, i);
         ctx.lineTo(canvas.height, i)
+        ctx.lineWidth=2
         ctx.stroke();
     }
     // end
